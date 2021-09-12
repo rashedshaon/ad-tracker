@@ -1,0 +1,22 @@
+ion-input{
+    border: 1px solid lightgray;
+    border-radius: 30px;
+}
+ion-item.round{
+    border: 1px solid lightgray;
+    border-radius: 30px;
+    ion-label{
+        --color: #808080;
+    }
+}
+
+.profile{
+    ion-label{
+        color: gray;
+        font-weight: 100;
+    }
+    p{
+        margin: 0;
+        font-weight: 100;
+    }
+}

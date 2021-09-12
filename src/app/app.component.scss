@@ -117,3 +117,23 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+.profile-block{
+  background-image: url('../assets/images/bg-icon.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  .name{margin-top: 5px;}
+  .address{font-size: 11px; color: var(--ion-color-medium);}
+  .phone{font-size: 11px; color: var(--ion-color-medium);}
+}
+
+.customer-care{
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  a{
+    text-decoration: none;
+    .label{ color:  #F36F21;}
+  }
+  .number{font-size: 1rem;}
+}

@@ -1,0 +1,15 @@
+ion-item{
+    .date{
+        color: gray;
+        font-size: 0.8rem;
+        text-align: right;
+    }
+    .amount{
+        font-size: 0.7rem;
+        text-align: right;
+    }
+}
+
+ion-item-divider{
+    --inner-padding-end: 15px;
+}

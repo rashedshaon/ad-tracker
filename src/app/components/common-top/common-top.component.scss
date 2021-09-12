@@ -1,0 +1,30 @@
+.notification-btn {
+	ion-badge {
+		position: absolute;
+		top: -0.2rem;
+		right: 0rem;
+		opacity: 0.9;
+	}
+}
+
+.account{
+	display: block;
+	width: 70%;
+	border: 1px solid var(--theme-base-color);
+	color: var(--theme-base-color);
+	border-radius: 25px;
+	font-size: 0.9rem;
+	padding: 2px 4px 2px 4px;
+	margin: 0 auto;
+	.icon{
+		background-color: var(--theme-base-color);
+		color: var(--theme-base-contrast);
+		padding: 0px 5px 0px 5px;
+		font-size: 0.9rem;
+		border-radius: 25px;
+		margin-right: 5px;
+	}
+	.amount{
+		text-align: right;
+	}
+}

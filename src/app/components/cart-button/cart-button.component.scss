@@ -1,0 +1,18 @@
+input{width: 30px; font-size: 0.7rem; padding: 0px; border: 1px solid lightgray;}
+input:focus{
+    outline: none;
+}
+ion-icon{font-size: 1.2rem;}
+.block{display: inline-block;}
+.parts{display: inline-block;  line-height: 0;}
+.add{padding: 6px 6px 10px 10px; }
+.remove{padding: 6px 10px 10px 6px; }
+.add-to-cart{
+    font-size: 0.7rem; 
+    font-family: sans-serif;  
+    color: var(--theme-base-color);
+    border: 1px solid var(--theme-base-color); 
+    display: inline-block; 
+    padding: 3px 5px 3px 5px;
+    border-radius: 20px;
+}

@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-row class="ion-align-items-center top-logo">
+    <ion-col size="4" routerLink="/tabs">
+      <img src="assets/images/logo.png" alt="">
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col >
+      <ion-input placeholder="User Name" type="text"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col >
+      <ion-input placeholder="Password" type="password"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-button expand="block" shape="round" color="orange" (click)="login()">LOGIN</ion-button>
+  <ion-button expand="block" shape="round" color="success" href="/registration">Registration</ion-button>
+  <ion-button fill="clear" expand="block" shape="round" color="primary" href="/forget">Forget Password?</ion-button>
+</ion-content>

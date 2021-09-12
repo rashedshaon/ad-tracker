@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar color="orange">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row class="ion-align-items-center">
+    <ion-col size="4">
+      <img src="assets/images/profile.png" alt="">
+    </ion-col>
+  </ion-row>
+
+  <ion-list class="profile" *ngIf="false">
+    <ion-item lines="full">
+      <ion-label position="stacked">Point</ion-label>
+      <p>3,569</p>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">User Name</ion-label>
+      <p>rashedshaon</p>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Referrer</ion-label>
+      <p>user2</p>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Phone</ion-label>
+      <p>01678059450</p>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Email</ion-label>
+      <p>shaon@live.com</p>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">NID</ion-label>
+      <p>199244654654544</p>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Address</ion-label>
+      <p>392, Amir Apartment</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-row>
+    <ion-col >
+      <ion-input placeholder="Full Name" type="text"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col >
+      <ion-input placeholder="Mobile" type="tel"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col >
+      <ion-input placeholder="Email" type="email"></ion-input>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col >
+      <ion-input placeholder="NID" type="text"></ion-input>
+    </ion-col>
+  </ion-row>
+  
+  
+  <ion-row>
+    <ion-col >
+      <ion-input placeholder="Address" type="text"></ion-input>
+    </ion-col>
+  </ion-row>
+
+  <!-- Fill -->
+  <div class="float-block">
+    <ion-button expand="full" color="orange">UPDATE PROFILE</ion-button>
+  </div>
+  
+</ion-content>

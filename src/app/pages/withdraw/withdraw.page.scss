@@ -1,0 +1,26 @@
+ion-item{
+    .date{
+        color: gray;
+        font-size: 0.8rem;
+    }
+    .amount{
+        font-size: 0.8rem;
+        text-align: right;
+    }
+    
+    p{
+        font-size: 0.7rem; font-family: sans-serif;
+    }
+}
+
+ion-input{
+    border: 1px solid lightgray;
+    border-radius: 30px;
+}
+ion-item.select{
+    border: 1px solid lightgray;
+    border-radius: 30px;
+    ion-label{
+        --color: #808080;
+    }
+}

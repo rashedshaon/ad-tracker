@@ -1,0 +1,8 @@
+<div class="block" *ngIf="count">
+  <div (click)="remove()" class="parts remove">-</div>
+  <div class="parts"><input type="number" [value]="count"></div>
+  <div (click)="add()" class="parts add">+</div>
+</div>
+<div class="add-to-cart" *ngIf="!count" (click)="add()">
+  Add to Cart
+</div>

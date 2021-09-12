@@ -1,0 +1,25 @@
+<ion-header>
+  <app-common-top></app-common-top>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <div class="income">
+        <span>৳</span>
+        <span>10</span>
+      </div>
+      <ion-button expand="block" color="orange" (click)="claimIncome()">Claim Today's Income</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <div class="income success">
+        <span>৳</span>
+        <span>10</span>
+      </div>
+      <ion-button expand="block" color="success" [disabled]="true">Successfully Collected</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

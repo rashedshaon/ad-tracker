@@ -24,3 +24,43 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.line {
+  margin: 0 auto;
+  margin-top: 10px;
+  //   border: 1px solid #F36F21;
+  background: #F36F21;
+  width: 80%;
+  height: 3px;
+}
+
+.ion-align-items-center{
+  ion-col{margin: 0 auto;}
+}
+
+ion-card.notification{
+  ion-card-header{border-bottom: 1px solid lightgray; padding: 5px 10px 5px 15px;}
+  ion-card-content{padding-top: 15px;}
+}
+
+.float-block{
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Platform, NavController, MenuController } from '@ionic/angular';
+// import { StatusBar } from '@ionic-native/status-bar/ngx';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -6,13 +9,54 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Inbox', url: '/folder/Inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/Outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/Favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/Archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/Trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
+    { title: 'Orders', url: '/orders', icon: 'document-text' },
+    { title: 'Transactions', url: '/transactions', icon: 'stats-chart' },
+    { title: 'Accounts', url: '/accounts', icon: 'people' },
+    { title: 'Profile', url: '/profile', icon: 'person' },
+    { title: 'About Us', url: '/about-us', icon: 'information-circle' },
+    // { title: 'Logout', url: '/logout', icon: 'log-out' },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+
+  constructor(
+    private platform: Platform,
+    public navCtrl: NavController,
+    public menuCtrl: MenuController,
+    // private statusBar: StatusBar,
+  ) {
+    //this.initializeApp();
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+
+      if (this.platform.is("cordova")) {
+        // this.statusBar.styleDefault();
+        // this.statusBar.backgroundColorByHexString("#DC5400");
+
+        
+      }
+    });
+    
+    this.appRouting();
+  }
+
+  appRouting() {
+
+    // this.navCtrl.navigateRoot(["/otp"]);
+
+    if(localStorage.getItem("user_data")) 
+    {
+      this.navCtrl.navigateRoot(["/tabs"]);
+    }
+    else
+    {
+      this.navCtrl.navigateRoot(["/login"]);
+    }
+
+  }
+
+  logout() {
+    localStorage.removeItem("user_data");
+    this.navCtrl.navigateRoot(["/login"]);
+  }
 }
