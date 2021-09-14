@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Platform, NavController, MenuController } from '@ionic/angular';
+import { UserService } from './services/user/user.service';
 // import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
@@ -21,6 +22,7 @@ export class AppComponent {
     private platform: Platform,
     public navCtrl: NavController,
     public menuCtrl: MenuController,
+    public user: UserService,
     // private statusBar: StatusBar,
   ) {
     //this.initializeApp();
@@ -28,12 +30,11 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-
-      if (this.platform.is("cordova")) {
+      if (this.platform.is("cordova")) 
+      {
         // this.statusBar.styleDefault();
         // this.statusBar.backgroundColorByHexString("#DC5400");
 
-        
       }
     });
     

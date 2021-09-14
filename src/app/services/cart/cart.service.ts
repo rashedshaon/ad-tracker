@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CartService {
-  
+
   data:any = {items:[], total_quantity:0, total_amount:0};
 
   constructor() { }

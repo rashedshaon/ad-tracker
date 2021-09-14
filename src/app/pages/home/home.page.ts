@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api/api.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  slides:any = [];
+  products:any = [];
 
-  ngOnInit() {
+  constructor(
+    public api: ApiService
+  ) { 
+
+  }
+
+  ngOnInit() 
+  {
+    this.api.progress = true;
+    this.api.post("home-data", {}).subscribe(result => {
+      this.api.progress = false;
+      
+      if (result.status == "ok") 
+      {
+        this.slides = result.data.slides;
+        this.products = result.data.products;
+      }
+      
+    });
   }
 
 }

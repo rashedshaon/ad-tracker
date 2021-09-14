@@ -3,30 +3,20 @@
 </ion-header>
 
 <ion-content>
+  <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
   <ion-row>
-    <ion-col size="6">
-      <ion-img [src]="'https://dummyimage.com/100x120/e3e3e3/00a651.jpg'"></ion-img>
-      <div class="title">Product Name Product Name Product Name</div>
-      <div class="price">$3,433</div>
-      <app-cart-button [count]="count" (refresh)="refresh($event)"></app-cart-button>
-    </ion-col>
-    <ion-col size="6">
-      <ion-img [src]="'https://dummyimage.com/100x120/e3e3e3/00a651.jpg'"></ion-img>
-      <div class="title">Product Name Product Name Product Name</div>
-      <div class="price">$3,433</div>
-      <app-cart-button [count]="count" (refresh)="refresh($event)"></app-cart-button>
-    </ion-col>
-    <ion-col size="6">
-      <ion-img [src]="'https://dummyimage.com/100x120/e3e3e3/00a651.jpg'"></ion-img>
-      <div class="title">Product Name Product Name Product Name</div>
-      <div class="price">$3,433</div>
-      <app-cart-button [count]="count" (refresh)="refresh($event)"></app-cart-button>
-    </ion-col>
-    <ion-col size="6">
-      <ion-img [src]="'https://dummyimage.com/100x120/e3e3e3/00a651.jpg'"></ion-img>
-      <div class="title">Product Name Product Name Product Name</div>
-      <div class="price">$3,433</div>
+    <ion-col size="6" *ngFor="let item of products;">
+      <ion-img [src]="item.photo"></ion-img>
+      <div class="title">{{ item.name }}</div>
+      <div class="price">${{ item.price_label }}</div>
       <app-cart-button [count]="count" (refresh)="refresh($event)"></app-cart-button>
     </ion-col>
   </ion-row>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadNext($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

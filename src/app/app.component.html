@@ -2,7 +2,16 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
-        <ion-row class="profile-block mt10 mb10">
+        <ion-row class="profile-block mt10 mb10" *ngIf="!user.isLogin">
+          <ion-col size="4">
+            <img src="assets/images/profile.png" alt="">
+          </ion-col>
+          <ion-col>
+            <div class="name"></div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="profile-block mt10 mb10" *ngIf="user.isLogin">
           <ion-col size="4">
             <img src="assets/images/profile.png" alt="">
           </ion-col>
@@ -12,19 +21,28 @@
             <div class="phone">01678059450</div>
           </ion-col>
         </ion-row>
+
+
         <ion-list id="inbox-list">
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item  [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item lines="none" detail="false" routerLinkActive="selected" (click)="logout()">
-              <ion-icon slot="start" [ios]="'log-out-outline'" [md]="'log-out-sharp'"></ion-icon>
-              <ion-label>Logout</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
+          <div *ngIf="!user.isLogin">
+            <ion-button expand="block" shape="round" color="orange" href="/login">LOGIN</ion-button>
+            <ion-button expand="block" shape="round" color="success" href="/registration">Registration</ion-button>
+          </div>
+
+          <div *ngIf="user.isLogin">
+            <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
+              <ion-item  [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+              <ion-item lines="none" detail="false" routerLinkActive="selected" (click)="logout()">
+                <ion-icon slot="start" [ios]="'log-out-outline'" [md]="'log-out-sharp'"></ion-icon>
+                <ion-label>Logout</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </div>
         </ion-list>
 
         <div class="customer-care">
