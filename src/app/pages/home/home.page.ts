@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api/api.service';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,8 @@ export class HomePage implements OnInit {
   products:any = [];
 
   constructor(
-    public api: ApiService
+    public api: ApiService,
+    public cart: CartService
   ) { 
 
   }
@@ -30,6 +32,11 @@ export class HomePage implements OnInit {
       }
       
     });
+  }
+
+  updateCart(count, product)
+  {
+    console.log(count, 'zzz');
   }
 
 }

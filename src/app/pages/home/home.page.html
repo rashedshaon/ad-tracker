@@ -15,7 +15,7 @@
       <ion-img [src]="item.photo"></ion-img>
       <div class="title">{{ item.name }}</div>
       <div class="price">${{ item.price_label }}</div>
-      <app-cart-button [count]="count" (refresh)="refresh($event)"></app-cart-button>
+      <app-cart-button [count]="cart.getProductQuantity(item.id)" (refresh)="updateCart($event, item)"></app-cart-button>
     </ion-col>
   </ion-row>
 </ion-content>
