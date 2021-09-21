@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform, NavController, MenuController } from '@ionic/angular';
 import { UserService } from './services/user/user.service';
+import { ToastService } from './services/toast/toast.service';
 // import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
@@ -18,11 +19,16 @@ export class AppComponent {
     // { title: 'Logout', url: '/logout', icon: 'log-out' },
   ];
 
+  backButtonSubscription: any;
+  lastBack: any;
+  allowClose: any;
+
   constructor(
     private platform: Platform,
     public navCtrl: NavController,
     public menuCtrl: MenuController,
     public user: UserService,
+    public toast: ToastService,
     // private statusBar: StatusBar,
   ) {
     //this.initializeApp();
@@ -57,7 +63,32 @@ export class AppComponent {
   }
 
   logout() {
-    localStorage.removeItem("user_data");
-    this.navCtrl.navigateRoot(["/login"]);
+    this.user.logout();
+    this.navCtrl.navigateRoot(["/tabs"]);
+  }
+
+  ngAfterViewInit() {
+    this.backButtonSubscription = this.platform.backButton.subscribe(() => {
+      const closeDelay = 2000;
+      const spamDelay = 500;
+
+      if (Date.now() - this.lastBack < closeDelay && !this.allowClose) {
+        this.allowClose = true;
+        this.backMessage();
+      } else if (Date.now() - this.lastBack < spamDelay && this.allowClose) {
+        navigator["app"].exitApp();
+        console.log("Exit.");
+      }
+
+      this.lastBack = Date.now();
+    });
+  }
+
+  async backMessage() {
+    const toast = await this.toast.present("Press Back Double Click to Exit App.", 1000);
+    toast.onDidDismiss().then(() => {
+      console.log("onDidDismiss...");
+      this.allowClose = false;
+    });
   }
 }

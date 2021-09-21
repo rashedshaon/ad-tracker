@@ -16,10 +16,13 @@ ion-item{
 ion-input{
     border: 1px solid lightgray;
     border-radius: 30px;
+    --padding-top: 7px;
+    --padding-bottom: 7px;
 }
 ion-item.select{
     border: 1px solid lightgray;
     border-radius: 30px;
+    
     ion-label{
         --color: #808080;
     }

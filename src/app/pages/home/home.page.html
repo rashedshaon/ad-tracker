@@ -4,7 +4,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
-  <ion-slides pager="true" [options]="slideOpts">
+  <ion-slides loop="true" pager="true" [options]="slideOptions">
     <ion-slide *ngFor="let item of slides;">
       <img src="{{ item.photo }}" alt="{{ item.name }}">
     </ion-slide>
@@ -15,7 +15,9 @@
       <ion-img [src]="item.photo"></ion-img>
       <div class="title">{{ item.name }}</div>
       <div class="price">${{ item.price_label }}</div>
-      <app-cart-button [count]="cart.getProductQuantity(item.id)" (refresh)="updateCart($event, item)"></app-cart-button>
+      <div class="text-center">
+        <app-cart-button [count]="cart.getProductQuantity(item.id)" (refresh)="updateCart($event, item)"></app-cart-button>
+      </div>
     </ion-col>
   </ion-row>
 </ion-content>

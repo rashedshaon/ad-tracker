@@ -8,5 +8,7 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
+  
+  <div class="about-us" [innerHTML]="about_us"></div>
 </ion-content>

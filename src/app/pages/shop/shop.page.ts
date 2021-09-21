@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { ApiService } from '../../services/api/api.service';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
   selector: 'app-shop',
@@ -13,10 +14,14 @@ export class ShopPage implements OnInit {
   pagination:any = [];
 
   constructor(
-    public api: ApiService
+    public api: ApiService,
+    public cart: CartService
   ) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
     this.loadData();
   }
 
@@ -49,5 +54,10 @@ export class ShopPage implements OnInit {
       }
       
     }, 500);
+  }
+
+  updateCart(count, product)
+  {
+    this.cart.updateCart(product, count);
   }
 }

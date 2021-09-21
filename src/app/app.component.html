@@ -13,12 +13,12 @@
 
         <ion-row class="profile-block mt10 mb10" *ngIf="user.isLogin">
           <ion-col size="4">
-            <img src="assets/images/profile.png" alt="">
+            <img src="{{ user.data.photo }}" alt="">
           </ion-col>
           <ion-col>
-            <div class="name">Rashed Anowar</div>
-            <div class="address">Rampura, Dhaka</div>
-            <div class="phone">01678059450</div>
+            <div class="name">{{ user.data.name }}</div>
+            <div class="address">{{ user.data.email }}</div>
+            <div class="phone">{{ user.data.phone }}</div>
           </ion-col>
         </ion-row>
 
@@ -27,6 +27,10 @@
           <div *ngIf="!user.isLogin">
             <ion-button expand="block" shape="round" color="orange" href="/login">LOGIN</ion-button>
             <ion-button expand="block" shape="round" color="success" href="/registration">Registration</ion-button>
+            
+            <ion-menu-toggle auto-hide="false">
+              <ion-button expand="block" shape="round" color="primary" routerLink="/about-us" routerLinkActive="selected">About Us</ion-button>
+            </ion-menu-toggle>
           </div>
 
           <div *ngIf="user.isLogin">

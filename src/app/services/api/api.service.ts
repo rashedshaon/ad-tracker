@@ -90,10 +90,13 @@ export class ApiService {
           console.log("okay", "post return data");
         }
         else {
-          if (results["code"] == 0) {
+          console.log(results["error"], 'xxx x');
+          if (results["error"] == 'token_invalid') 
+          {
             this.navCtrl.navigateRoot(["/login"]);
           }
-          else if (results["code"] == 1) {
+          else if (results["error"] == 'token_expired') 
+          {
             this.refreshToken();
           } else {
             console.log(results["msg"]);
@@ -212,18 +215,36 @@ export class ApiService {
 
 
   refreshToken() {
-    console.log("token_update", "ok", localStorage.getItem("user_data"));
     this.post("refresh-token", { token: localStorage.getItem("token") }).subscribe((result) => {
 
-      if (result.status == "ok") {
+      if (result.status == "ok") 
+      {
         this.user.setToken(result.token);
-      } else {
-        if (result.code == 0) {
-          this.navCtrl.navigateRoot(["/login"]);
-        } else {
-          console.log(result.msg);
-        }
+        this.refreshUser();
+      } 
+      else 
+      {
+        if (result.msg == "could_not_refresh_token") 
+        {
+          this.user.logout();
+        } 
       }
+
+      console.log(result.msg, 'refreshToken');
     });
+  }
+
+  refreshUser() 
+  {
+    if(this.user.isLogin)
+    {
+      this.post("user-refresh?token="+this.user.token, {}).subscribe(result => {
+        if(result.status == "ok") 
+        {
+          this.user.data = result.data;
+          localStorage.setItem("user_data", JSON.stringify(this.user.data));
+        }
+      });
+    }
   }
 }

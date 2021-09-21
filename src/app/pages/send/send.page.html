@@ -8,16 +8,18 @@
 </ion-header>
 
 <ion-content>
+  <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
+
   <ion-row>
     <ion-col >
-      <ion-input placeholder="User Name" type="text"></ion-input>
+      <ion-input placeholder="User Name" type="text" [(ngModel)]="fundTransfer.login"></ion-input>
     </ion-col>
   </ion-row>
   <ion-row>
     <ion-col >
-      <ion-input placeholder="Amount" type="number"></ion-input>
+      <ion-input placeholder="Amount" type="number" [(ngModel)]="fundTransfer.amount"></ion-input>
     </ion-col>
   </ion-row>
 
-  <ion-button expand="block" shape="round" color="orange" (click)="sendFund()">Send Fund</ion-button>
+  <ion-button expand="block" shape="round" color="orange" (click)="sendFund()" [disabled]="api.progress">Send Fund</ion-button>
 </ion-content>

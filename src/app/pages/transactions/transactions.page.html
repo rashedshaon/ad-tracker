@@ -8,8 +8,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-segment (ionChange)="segmentChanged($event)" color="orange">
-    <ion-segment-button value="summary" checked="true">
+  <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
+  
+  <ion-segment (ionChange)="segmentChanged($event)" value="summary" color="orange">
+    <ion-segment-button value="summary">
       <ion-label>Summary</ion-label>
     </ion-segment-button>
     <ion-segment-button value="details">
@@ -17,78 +19,66 @@
     </ion-segment-button>
   </ion-segment>
 
-  <ion-list>
+  <ion-list *ngIf="selectedSegment == 'summary'">
     <ion-item-divider>
       <ion-label>
         Income
       </ion-label>
       <ion-text slot="end">
-        5,505
+        
       </ion-text>
     </ion-item-divider>
-    <ion-item lines="full">
+    <ion-item lines="full" *ngFor="let item of summary.income;">
       <ion-label>
-        <h3>Referral</h3>
-        <p>3 times</p>
+        <h3>{{item.name}}</h3>
+        <p>{{item.count}} times</p>
       </ion-label>
       <ion-text slot="end">
-        550
+        {{item.total_amount}}
       </ion-text>
     </ion-item>
-    <ion-item lines="full">
-      <ion-label>
-        <h3>Bonus</h3>
-        <p>3 times</p>
-      </ion-label>
-      <ion-text slot="end">
-        550
-      </ion-text>
-    </ion-item>
+
+    
   
     <ion-item-divider>
       <ion-label>
         Expense
       </ion-label>
       <ion-text slot="end">
-        5,505
+        
       </ion-text>
     </ion-item-divider>
   
-    <ion-item lines="full">
+    <ion-item lines="full" *ngFor="let item of summary.expense;">
       <ion-label>
-        <h3>Referral</h3>
-        <p>3 times</p>
+        <h3>{{item.name}}</h3>
+        <p>{{item.count}} times</p>
       </ion-label>
       <ion-text slot="end">
-        550
-      </ion-text>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label>
-        <h3>Bonus</h3>
-        <p>3 times</p>
-      </ion-label>
-      <ion-text slot="end">
-        550
+        {{item.total_amount}}
       </ion-text>
     </ion-item>
 
   </ion-list>
 
-  <ion-list>
-
-    <ion-item lines="full">
+  <ion-list *ngIf="selectedSegment == 'details'">
+    <ion-item lines="full"  *ngFor="let item of list;">
       <ion-label>
-        <h3>Referral</h3>
+        <h3>{{item.name}}</h3>
         
       </ion-label>
       <ion-text slot="end">
-        <div class="date">12-10-2021</div>
-        <div class="amount">550</div>
+        <div class="date">{{item.created_at}}</div>
+        <div class="amount">{{item.amount}}</div>
       </ion-text>
     </ion-item>
-    
-
   </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadNext($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

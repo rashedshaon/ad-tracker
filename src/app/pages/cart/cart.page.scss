@@ -24,3 +24,10 @@ ion-card.order{
         .quantity{font-size: 0.8rem; font-family: sans-serif;}
       }
     }
+
+    ion-input{
+      border: 1px solid lightgray;
+      border-radius: 30px;
+      --padding-top: 7px;
+      --padding-bottom: 7px;
+  }

@@ -10,16 +10,30 @@ import { CartService } from '../../services/cart/cart.service';
 export class HomePage implements OnInit {
 
   slides:any = [];
+  slideOptions:any = {
+    autoplay:true,
+   };
+
   products:any = [];
 
   constructor(
     public api: ApiService,
-    public cart: CartService
+    public cart: CartService,
   ) { 
 
   }
 
   ngOnInit() 
+  {
+    
+  }
+
+  slidesDidLoad(slider) {
+    console.log('slidesDidLoad ');
+    slider.startAutoplay();
+  }
+
+  loadData()
   {
     this.api.progress = true;
     this.api.post("home-data", {}).subscribe(result => {
@@ -34,9 +48,16 @@ export class HomePage implements OnInit {
     });
   }
 
+  ionViewWillEnter() {
+    // this.slideOptions.autoplay = true;
+    console.log('ionViewWillEnter');
+    this.loadData();
+    this.api.refreshUser();
+  }
+
   updateCart(count, product)
   {
-    console.log(count, 'zzz');
+    this.cart.updateCart(product, count);
   }
 
 }

@@ -64,3 +64,13 @@ ion-card.notification{
   position: absolute;
   bottom: 0px;
 }
+
+.message-block{
+  margin-top: 20px;
+  padding: 0px 15px 0px 15px;
+  .icon{ font-size: 3.5rem;}
+}
+
+.message-block.success{color: var(--ion-color-success);}
+.message-block.danger{color: var(--ion-color-danger);}
+.message-block.warning{color: var(--ion-color-warning);}

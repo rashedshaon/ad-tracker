@@ -3,68 +3,56 @@
 </ion-header>
 
 <ion-content>
-  <ion-button *ngIf="!showWithdrawRequestForm" expand="block" color="orange" (click)="createWithdrawRequest()">Create Withdraw Request</ion-button>
+  <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
+  
+  <ion-button *ngIf="!user.isLogin" expand="block" color="orange" href="/login">Create Withdraw Request</ion-button>
+  <ion-button *ngIf="!showWithdrawRequestForm && user.isLogin" expand="block" color="orange" (click)="createWithdrawRequest()">Create Withdraw Request</ion-button>
 
   <div *ngIf="showWithdrawRequestForm">
     <ion-row>
       <ion-col>
         <ion-item class="select" lines="none">
           <ion-label>Select Bank</ion-label>
-          <ion-select okText="Ok" cancelText="Cancel">
-            <ion-select-option value="brown">Bkash</ion-select-option>
-            <ion-select-option value="blonde">Rocket</ion-select-option>
-            <ion-select-option value="black">Nagad</ion-select-option>
-            <ion-select-option value="red">DBBL</ion-select-option>
+          <ion-select okText="Ok" cancelText="Cancel" [(ngModel)]="orderRequest.bank_id">
+            <ion-select-option *ngFor="let item of banks;" value="{{item.id}}" >
+              {{item.name}}
+            </ion-select-option>
           </ion-select>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col >
-        <ion-input placeholder="Account No." type="text"></ion-input>
+        <ion-input placeholder="Account No." type="text" [(ngModel)]="orderRequest.account_no"></ion-input>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col >
-        <ion-input placeholder="Amount" type="number"></ion-input>
+        <ion-input placeholder="Amount" type="number" [(ngModel)]="orderRequest.amount"></ion-input>
       </ion-col>
     </ion-row>
     <ion-button expand="block" shape="round" color="orange" (click)="submitWithdrawRequest()">Submit Withdraw Request</ion-button>
   </div>
 
-  <ion-list *ngIf="!showWithdrawRequestForm">
+  <ion-list *ngIf="!showWithdrawRequestForm && user.isLogin">
 
-    <ion-item lines="full">
+    <ion-item lines="full" *ngFor="let item of list;">
       <ion-label>
-        <h3>Pending</h3>
-        <p>Bkash (01678059450)</p>
+        <h3> <ion-text color="{{ item.status_color }}">{{ item.status_name }}</ion-text> </h3>
+        <p>{{ item.bank }} ({{ item.account_no }})</p>
       </ion-label>
       <ion-text slot="end">
-        <div class="date">12-10-2021</div>
-        <div class="amount">550</div>
-      </ion-text>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label>
-        <h3>Approved</h3>
-        <p>Bkash (01678059450)</p>
-      </ion-label>
-      <ion-text slot="end">
-        <div class="date">12-10-2021</div>
-        <div class="amount">550</div>
-      </ion-text>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label>
-        <h3>Decline</h3>
-        <p>Bkash (01678059450)</p>
-      </ion-label>
-      <ion-text slot="end">
-        <div class="date">12-10-2021</div>
-        <div class="amount">550</div>
+        <div class="date">{{ item.created_at }}</div>
+        <div class="amount">{{ item.amount }}</div>
       </ion-text>
     </ion-item>
     
   </ion-list>
 
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadNext($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

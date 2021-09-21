@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api/api.service';
+import { CartService } from '../../services/cart/cart.service';
+import { UserService } from '../../services/user/user.service';
+import { ToastService } from '../../services/toast/toast.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,16 +11,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartPage implements OnInit {
 
-  count: number = 0;
+  orderStep: number = 1;
+  orderNumber: number;
 
-  constructor() { }
+  constructor(
+    public api: ApiService,
+    public cart: CartService,
+    public user: UserService,
+    public toast: ToastService,
+  ) { }
 
   ngOnInit() {
+    this.cart.getData();
   }
 
-  refresh(count)
+  updateCart(count, product)
   {
-    this.count = count;
+    this.cart.updateCart(product, count);
   }
 
+  checkout()
+  {
+    this.orderStep = 2;
+  }
+
+  placeOrder()
+  {
+    let data:any = this.user.data;
+        data.items = this.cart.data.items;
+        data.total_amount = this.cart.data.total_amount;
+    this.api.progress = true;
+    this.api.post("submit-order", data).subscribe(result => {
+      this.api.progress = false;
+      
+      if(result.status == "ok") 
+      {
+        this.orderStep = 3;
+        this.orderNumber = result.data;
+        this.cart.clearCart();
+      }
+
+      this.toast.present(result.msg);
+    });
+  }
 }

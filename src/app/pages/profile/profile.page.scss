@@ -1,6 +1,8 @@
 ion-input{
     border: 1px solid lightgray;
     border-radius: 30px;
+    --padding-top: 7px;
+    --padding-bottom: 7px;
 }
 ion-item.round{
     border: 1px solid lightgray;
@@ -10,6 +12,16 @@ ion-item.round{
     }
 }
 
+.profile-photo
+{
+    margin-top: 20px;
+    img{
+        border-radius: 50px;
+    }
+    ion-button{
+        position: absolute;
+    }
+}
 .profile{
     ion-label{
         color: gray;
@@ -20,3 +32,40 @@ ion-item.round{
         font-weight: 100;
     }
 }
+
+
+.input--file {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: fit-content;
+    color: rgb(107, 107, 107);
+    ion-icon{
+      display: inline-block;
+      font-size: 1.2em;
+      vertical-align: middle;
+      // -webkit-box-shadow: 5px 5px 15px 5px #ffffff; 
+      // box-shadow: 5px 5px 15px 5px #ffffff;
+    }
+    .text{
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .input-block{
+      border: 1px solid lightgray;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      width: 25px;
+      height: 25px;
+      text-align: center;
+    }
+  }
+  
+
+  .input--file ion-input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+  }

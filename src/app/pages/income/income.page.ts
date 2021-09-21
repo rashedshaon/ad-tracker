@@ -18,11 +18,12 @@ export class IncomePage implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
     if(this.user.isLogin)
     {
       this.api.progress = true;
-      this.api.post("todays-income", {}).subscribe(result => {
+      this.api.post("todays-income?token="+this.user.token, {}).subscribe(result => {
         this.api.progress = false;
         
         this.collectedAmount = result.data;
@@ -43,7 +44,7 @@ export class IncomePage implements OnInit {
   claimIncome()
   {
     this.api.progress = true;
-    this.api.post("submit-income", {}).subscribe(result => {
+    this.api.post("submit-income?token="+this.user.token, {}).subscribe(result => {
       this.api.progress = false;
       
       this.collectedAmount = result.data;
@@ -51,6 +52,7 @@ export class IncomePage implements OnInit {
       if (result.status == "ok") 
       {
         this.isCollected = true;
+        this.api.refreshUser();
       }
       else
       {

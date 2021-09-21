@@ -4,7 +4,7 @@
   </ion-buttons>
   <div class="account">
     <span class="icon">৳</span>
-    <span class="amount">0</span>
+    <span class="amount">{{user.data.balance}}</span>
   </div>
   <ion-buttons slot="primary" class="notification-btn">
     <ion-button routerLink="/send">
@@ -13,6 +13,6 @@
     <ion-button routerLink="/cart">
       <ion-icon color="orange" name="bag-outline"></ion-icon>
     </ion-button>
-    <ion-badge color="orange">8</ion-badge>
+    <ion-badge color="orange">{{cart.data.total_quantity}}</ion-badge>
   </ion-buttons>
 </ion-toolbar>

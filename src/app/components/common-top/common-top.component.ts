@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from '../../services/cart/cart.service';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-common-top',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommonTopComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public cart: CartService,
+    public user: UserService
+  ) { }
 
   ngOnInit() {}
 

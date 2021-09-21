@@ -8,33 +8,96 @@
 </ion-header>
 
 <ion-content>
-  <ion-card class="order">
-    <ion-card-content>
-      <ion-item lines="full">
-        <ion-thumbnail slot="start">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-        </ion-thumbnail>
-        <ion-label>
-          <div class="title">Item Thumbnail Item Thumbnail Item Thumbnail</div>
-          <div class="price">৳ 3,895</div>
-          <app-cart-button [count]="count" (refresh)="refresh($event)"></app-cart-button>
-        </ion-label>
-      </ion-item>
-      <ion-item lines="full">
-        <ion-thumbnail slot="start">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-        </ion-thumbnail>
-        <ion-label>
-          <div class="title">Item Thumbnail Item Thumbnail Item Thumbnail</div>
-          <div class="price">৳ 3,895</div>
-          <app-cart-button [count]="count" (refresh)="refresh($event)"></app-cart-button>
-        </ion-label>
-      </ion-item>
+  <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
 
-      <div>
-        <div class="down">Quantity: {{count}}</div>
-        <div class="down text-right">Total: ৳ 3,895</div>
-      </div>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="orderStep == 1">
+    <div  *ngIf="cart.data.items.length">
+      <ion-card class="order">
+        <ion-card-content>
+          <ion-item lines="full" *ngFor="let item of cart.data.items">
+            <ion-thumbnail slot="start">
+              <img src="{{ item.photo }}">
+            </ion-thumbnail>
+            <ion-label>
+              <div class="title">{{ item.name }}</div>
+              <div class="price">৳ {{ item.price_label }}</div>
+              <app-cart-button [count]="item.quantity" (refresh)="updateCart($event, item)"></app-cart-button>
+            </ion-label>
+       
+            <div slot="end" class="text-right" (click)="cart.remove(item)">
+              <ion-icon color="danger" slot="start" name="close-outline"></ion-icon>
+            </div>
+          </ion-item>
+          <div>
+            <div class="down">Quantity: {{cart.data.total_quantity}}</div>
+            <div class="down text-right">Total: ৳ {{cart.data.total_amount}}</div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+      <ion-row>
+        <ion-col>
+          <ion-button size="small" color="danger" (click)="cart.clearCart()">
+            <ion-icon slot="start" name="close-outline"></ion-icon>
+            Clear Cart
+          </ion-button>
+        </ion-col>
+        <ion-col class="text-right">
+          <ion-button size="small" color="success" (click)="checkout()">
+            <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+            Checkout
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-row class="message-block warning" *ngIf="!cart.data.items.length">
+      <ion-col class="text-center">
+        <div class="icon text-warning"><ion-icon name="cart-outline"></ion-icon></div>
+        <div class="message">
+          Your cart is empty. Please add items to cart.
+        </div>
+        <ion-button fill="clear" expand="block" shape="round" color="success" href="/tabs/shop">Go to Shop</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="orderStep == 2">
+    <ion-row>
+      <ion-col class="text-center">
+        <ion-text color="success">Total Amount: <ion-text color="primary">৳ {{cart.data.total_amount}}</ion-text></ion-text>
+        <div>
+          <ion-text color="success">Give your delivery details</ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col >
+        <ion-input placeholder="Full Name" type="text" [(ngModel)]="user.data.name"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col >
+        <ion-input placeholder="Phone" type="tel" [(ngModel)]="user.data.phone"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col >
+        <ion-input placeholder="Address" type="text" [(ngModel)]="user.data.address"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-button [disabled]="api.progress" expand="block" shape="round" color="orange" (click)="placeOrder()">Place Order</ion-button>
+  </div>
+
+  <div *ngIf="orderStep == 3">
+    <ion-row class="message-block success">
+      <ion-col class="text-center">
+        <div class="icon text-success"><ion-icon name="checkmark-circle"></ion-icon></div>
+        <div class="message">
+          Order Successfully Submitted. Your order number is {{orderNumber}}.
+        </div>
+        <ion-button fill="clear" expand="block" shape="round" color="primary" href="/tabs">Go to Home</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+  
 </ion-content>
