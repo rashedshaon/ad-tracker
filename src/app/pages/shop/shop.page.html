@@ -8,7 +8,7 @@
     <ion-col size="6" *ngFor="let item of products;">
       <ion-img [src]="item.photo"></ion-img>
       <div class="title">{{ item.name }}</div>
-      <div class="price">${{ item.price_label }}</div>
+      <div class="price">৳{{ item.price_label }}</div>
       <div class="text-center">
         <app-cart-button [count]="cart.getProductQuantity(item.id)" (refresh)="updateCart($event, item)"></app-cart-button>
       </div>

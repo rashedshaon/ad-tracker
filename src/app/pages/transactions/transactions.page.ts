@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { UserService } from '../../services/user/user.service';
 import { ApiService } from '../../services/api/api.service';
 
@@ -21,6 +22,7 @@ export class TransactionsPage implements OnInit {
   selectedSegment:string = "summary";
 
   constructor(
+    public alertController: AlertController,
     public user: UserService,
     public api: ApiService,
   ) { }
@@ -28,6 +30,18 @@ export class TransactionsPage implements OnInit {
   ngOnInit() 
   {
     this.loadSummary();
+  }
+
+  async showAlert(message) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Description',
+      // subHeader: 'Subtitle',
+      message: message,
+      buttons: ['Close']
+    });
+
+    await alert.present();
   }
 
   loadSummary()

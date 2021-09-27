@@ -10,36 +10,48 @@
 <ion-content>
   <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
   
-  <ion-card class="order" *ngFor="let item of list;">
-    <ion-card-header style="background-color: {{ item.status_color }};">
-      <ion-card-subtitle>Order Date: {{ item.created_at }}</ion-card-subtitle>
-      <ion-card-subtitle>Order No.: {{ item.code }}</ion-card-subtitle>
-    </ion-card-header>
+  <div *ngIf="list.length">
+    <ion-card class="order" *ngFor="let item of list;">
+      <ion-card-header style="background-color: {{ item.status_color }};">
+        <ion-card-subtitle>Order Date: {{ item.created_at }}</ion-card-subtitle>
+        <ion-card-subtitle>Order No.: {{ item.code }}</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-item lines="full" *ngFor="let data of item.items;">
+          <ion-thumbnail slot="start">
+            <img src="{{ data.photo }}">
+          </ion-thumbnail>
+          <ion-label>
+            <div class="title">{{ data.name }}</div>
+            <div class="price">৳ {{ data.price }}</div>
+            <div class="quantity">x {{ data.quantity }}</div>
+          </ion-label>
+        </ion-item>
+        
   
-    <ion-card-content>
-      <ion-item lines="full" *ngFor="let data of item.items;">
-        <ion-thumbnail slot="start">
-          <img src="{{ data.photo }}">
-        </ion-thumbnail>
-        <ion-label>
-          <div class="title">{{ data.name }}</div>
-          <div class="price">৳ {{ data.price }}</div>
-          <div class="quantity">x {{ data.quantity }}</div>
-        </ion-label>
-      </ion-item>
-      
+        <div>
+          <div class="down" style="color: {{ item.status_color }};">{{ item.status_name }}</div>
+          <div class="down text-right">Total: ৳ {{ item.total_price_label }}</div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadNext($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
 
-      <div>
-        <div class="down" style="color: {{ item.status_color }};">{{ item.status_name }}</div>
-        <div class="down text-right">Total: ৳ {{ item.total_price_label }}</div>
+  <ion-row class="message-block warning" *ngIf="!list.length">
+    <ion-col class="text-center">
+      <div class="icon text-warning"><ion-icon name="document-text-outline"></ion-icon></div>
+      <div class="message">
+        No Order Placed Yet!
       </div>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadNext($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+      <ion-button fill="clear" expand="block" shape="round" color="success" href="/tabs/shop">Go to Shop</ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>

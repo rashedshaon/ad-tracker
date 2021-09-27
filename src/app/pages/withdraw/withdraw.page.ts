@@ -32,6 +32,11 @@ export class WithdrawPage implements OnInit {
 
   ngOnInit() 
   {
+    
+  }
+
+  ionViewWillEnter() 
+  {
     if(this.user.isLogin)
     {
       this.loadData();

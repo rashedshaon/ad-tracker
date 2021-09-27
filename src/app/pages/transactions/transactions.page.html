@@ -62,7 +62,7 @@
   </ion-list>
 
   <ion-list *ngIf="selectedSegment == 'details'">
-    <ion-item lines="full"  *ngFor="let item of list;">
+    <ion-item lines="full"  *ngFor="let item of list;" (click)="showAlert(item.description)">
       <ion-label>
         <h3>{{item.name}}</h3>
         

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.itrail.adtracker" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Ad Tracker</name>
-    <description>An app for AD Shop.</description>
+    <name>JML SHOP</name>
+    <description>An app for JML SHOP.</description>
     <author email="shaon@live.com" href="https://shaonlive.tk/">IT Rail Team</author>
     <content src="index.html" />
     <access origin="*" />
