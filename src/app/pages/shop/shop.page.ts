@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonInfiniteScroll } from '@ionic/angular';
+import { AlertController, IonInfiniteScroll } from '@ionic/angular';
 import { ApiService } from '../../services/api/api.service';
 import { CartService } from '../../services/cart/cart.service';
 
@@ -10,54 +10,60 @@ import { CartService } from '../../services/cart/cart.service';
 })
 export class ShopPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  products:any = [];
-  pagination:any = [];
+  products: any = [];
+  pagination: any = [];
 
   constructor(
+    public alertController: AlertController,
     public api: ApiService,
     public cart: CartService
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ionViewWillEnter() {
     this.loadData();
   }
 
-  loadData(page_number = 1)
-  {
-    this.api.progress = true;
-    this.api.post("shop-products?page=" + page_number, {}).subscribe(result => {
-      this.api.progress = false;
-      if (result.status == "ok") 
-      {
-        this.products = result.data;
-        this.pagination = result.pagination;
-      }
+  async showAlert(message) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Description',
+      // subHeader: 'Subtitle',
+      message: message,
+      buttons: ['Close'],
     });
+
+    await alert.present();
   }
 
-  loadNext(event) 
-  {
+  loadData(page_number = 1) {
+    this.api.progress = true;
+    this.api
+      .post('shop-products?page=' + page_number, {})
+      .subscribe((result) => {
+        this.api.progress = false;
+        if (result.status == 'ok') {
+          this.products = result.data;
+          this.pagination = result.pagination;
+        }
+      });
+  }
+
+  loadNext(event) {
     setTimeout(() => {
       console.log('Done');
       event.target.complete();
 
-      if(this.pagination.has_more_pages)
-      {
+      if (this.pagination.has_more_pages) {
         this.loadData(this.pagination.next_page);
-      }
-      else
-      {
+      } else {
         event.target.disabled = true;
       }
-      
     }, 500);
   }
 
-  updateCart(count, product)
-  {
+  updateCart(count, product) {
     this.cart.updateCart(product, count);
   }
 }

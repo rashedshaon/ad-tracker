@@ -8,12 +8,11 @@ import { UserService } from '../../services/user/user.service';
   styleUrls: ['./common-top.component.scss'],
 })
 export class CommonTopComponent implements OnInit {
+  balance: any;
 
-  constructor(
-    public cart: CartService,
-    public user: UserService
-  ) { }
+  constructor(public cart: CartService, public user: UserService) {}
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.balance = Math.floor(this.user.data.balance);
+  }
 }

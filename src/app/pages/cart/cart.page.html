@@ -11,7 +11,7 @@
   <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
 
   <div *ngIf="orderStep == 1">
-    <div  *ngIf="cart.data.items.length">
+    <div *ngIf="cart.data.items.length">
       <ion-card class="order">
         <ion-card-content>
           <ion-item lines="full" *ngFor="let item of cart.data.items">
@@ -19,18 +19,18 @@
               <img src="{{ item.photo }}">
             </ion-thumbnail>
             <ion-label>
-              <div class="title">{{ item.name }}</div>
+              <div class="title"><b>{{ item.name }}</b></div>
               <div class="price">৳ {{ item.price_label }}</div>
               <app-cart-button [count]="item.quantity" (refresh)="updateCart($event, item)"></app-cart-button>
             </ion-label>
-       
             <div slot="end" class="text-right" (click)="cart.remove(item)">
-              <ion-icon color="danger" slot="start" name="close-outline"></ion-icon>
+              <ion-icon size="large" color="danger" slot="start" title="Remove From Cart" name="close-circle">
+              </ion-icon>
             </div>
           </ion-item>
           <div>
-            <div class="down">Quantity: {{cart.data.total_quantity}}</div>
-            <div class="down text-right">Total: ৳ {{cart.data.total_amount}}</div>
+            <div class="down"><b>Quantity:</b> {{cart.data.total_quantity}}</div>
+            <div class="down text-right"><b>Total:</b> ৳ {{cart.data.total_amount}}</div>
           </div>
         </ion-card-content>
       </ion-card>
@@ -52,7 +52,9 @@
 
     <ion-row class="message-block warning" *ngIf="!cart.data.items.length">
       <ion-col class="text-center">
-        <div class="icon text-warning"><ion-icon name="cart-outline"></ion-icon></div>
+        <div class="icon text-warning">
+          <ion-icon name="cart-outline"></ion-icon>
+        </div>
         <div class="message">
           Your cart is empty. Please add items to cart.
         </div>
@@ -64,34 +66,38 @@
   <div *ngIf="orderStep == 2">
     <ion-row>
       <ion-col class="text-center">
-        <ion-text color="success">Total Amount: <ion-text color="primary">৳ {{cart.data.total_amount}}</ion-text></ion-text>
+        <ion-text color="success">Total Amount: <ion-text color="primary">৳ {{cart.data.total_amount}}</ion-text>
+        </ion-text>
         <div>
           <ion-text color="success">Give your delivery details</ion-text>
         </div>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col >
+      <ion-col>
         <ion-input placeholder="Full Name" type="text" [(ngModel)]="user.data.name"></ion-input>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col >
+      <ion-col>
         <ion-input placeholder="Phone" type="tel" [(ngModel)]="user.data.phone"></ion-input>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col >
+      <ion-col>
         <ion-input placeholder="Address" type="text" [(ngModel)]="user.data.address"></ion-input>
       </ion-col>
     </ion-row>
-    <ion-button [disabled]="api.progress" expand="block" shape="round" color="orange" (click)="placeOrder()">Place Order</ion-button>
+    <ion-button [disabled]="api.progress" expand="block" shape="round" color="orange" (click)="placeOrder()">Place Order
+    </ion-button>
   </div>
 
   <div *ngIf="orderStep == 3">
     <ion-row class="message-block success">
       <ion-col class="text-center">
-        <div class="icon text-success"><ion-icon name="checkmark-circle"></ion-icon></div>
+        <div class="icon text-success">
+          <ion-icon name="checkmark-circle"></ion-icon>
+        </div>
         <div class="message">
           Order Successfully Submitted. Your order number is {{orderNumber}}.
         </div>
@@ -99,5 +105,5 @@
       </ion-col>
     </ion-row>
   </div>
-  
+
 </ion-content>

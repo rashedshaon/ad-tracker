@@ -3,39 +3,37 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-row class="profile-block mt10 mb10" *ngIf="!user.isLogin">
-          <ion-col size="4">
-            <img src="assets/images/profile.png" alt="">
-          </ion-col>
-          <ion-col>
-            <div class="name"></div>
+          <ion-col class="text-center">
+            <br>
+            <img src="assets/images/profile.png" width="75" alt="">
           </ion-col>
         </ion-row>
 
         <ion-row class="profile-block mt10 mb10" *ngIf="user.isLogin">
           <ion-col size="4">
-            <img src="{{ user.data.photo }}" alt="">
+            <img src="{{user.data.photo}}" width="75" alt="">
           </ion-col>
           <ion-col>
-            <div class="name">{{ user.data.name }}</div>
-            <div class="address">{{ user.data.email }}</div>
-            <div class="phone">{{ user.data.phone }}</div>
+            <div class="name">{{user.data.name}}</div>
+            <div class="address">{{user.data.email}}</div>
+            <div class="phone">{{user.data.phone}}</div>
           </ion-col>
         </ion-row>
 
-
         <ion-list id="inbox-list">
-          <div *ngIf="!user.isLogin">
-            <ion-button expand="block" shape="round" color="orange" href="/login">LOGIN</ion-button>
-            <ion-button expand="block" shape="round" color="success" href="/registration">Registration</ion-button>
-            
+          <div *ngIf="!user.isLogin" class="text-center">
+            <ion-button class="buttons" shape="round" color="orange" href="/login">Login</ion-button>
+            <ion-button class="buttons" shape="round" color="success" href="/registration">Registration</ion-button>
             <ion-menu-toggle auto-hide="false">
-              <ion-button expand="block" shape="round" color="primary" routerLink="/about-us" routerLinkActive="selected">About Us</ion-button>
+              <ion-button class="buttons" shape="round" color="primary" routerLink="/about-us"
+                routerLinkActive="selected">About Us
+              </ion-button>
             </ion-menu-toggle>
           </div>
 
           <div *ngIf="user.isLogin">
             <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-              <ion-item  [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+              <ion-item [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
                 <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
                 <ion-label>{{ p.title }}</ion-label>
               </ion-item>
@@ -50,11 +48,10 @@
         </ion-list>
 
         <div class="customer-care">
-          <a href="tel:01700000000">
-            <div class="label">Customer Care</div>
-            <div class="number">
-              <ion-icon name="call"></ion-icon> 01700000000
-            </div>
+          <a href="tel:01915151612">
+            <h6 class="label">
+              <ion-icon name="call"></ion-icon>&nbsp;&nbsp;Hotline:&nbsp;01915151612
+            </h6>
           </a>
         </div>
 

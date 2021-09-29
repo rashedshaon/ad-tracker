@@ -10,6 +10,7 @@ ion-input{
     border-radius: 30px;
     --padding-top: 7px;
     --padding-bottom: 7px;
+    padding: 5px 0 5px 10px !important;
 }
 ion-item.round{
     border: 1px solid lightgray;
@@ -19,7 +20,7 @@ ion-item.round{
     }
 }
 .top-logo{
-    margin-top: 3.5rem;
+    margin-top: 2rem;
 }
 .profile{
     ion-label{

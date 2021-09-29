@@ -1,30 +1,45 @@
 .notification-btn {
-	ion-badge {
-		position: absolute;
-		top: -0.2rem;
-		right: 0rem;
-		opacity: 0.9;
-	}
+  ion-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.9;
+    font-size: 70%;
+    padding: 6px;
+  }
+
+  .shopping-basket {
+    margin-right: 9px;
+  }
 }
 
-.account{
-	display: block;
-	width: 70%;
-	border: 1px solid var(--theme-base-color);
-	color: var(--theme-base-color);
-	border-radius: 25px;
-	font-size: 0.9rem;
-	padding: 2px 4px 2px 4px;
-	margin: 0 auto;
-	.icon{
-		background-color: var(--theme-base-color);
-		color: var(--theme-base-contrast);
-		padding: 0px 5px 0px 5px;
-		font-size: 0.9rem;
-		border-radius: 25px;
-		margin-right: 5px;
-	}
-	.amount{
-		text-align: right;
-	}
+.account {
+  position: relative;
+  display: block;
+  width: 70%;
+  border: 1px solid var(--theme-base-color);
+  color: var(--theme-base-color);
+  border-radius: 25px;
+  font-size: 0.9rem;
+  padding: 5px 5px 5px 30px;
+  margin: 0 auto;
+
+  .icon {
+    background-color: var(--theme-base-color);
+    color: var(--theme-base-contrast);
+    padding: 5px;
+    font-size: 0.8rem;
+    border-radius: 50%;
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    top: 2px;
+    left: 2px;
+    line-height: 15px;
+    text-align: center;
+  }
+
+  .amount {
+    text-align: right;
+  }
 }

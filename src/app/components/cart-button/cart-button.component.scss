@@ -1,18 +1,46 @@
-input{width: 30px; font-size: 0.7rem; padding: 0px; border: 1px solid lightgray;}
-input:focus{
-    outline: none;
+input {
+  width: 30px;
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 0;
+  border: 1px solid lightgray;
 }
-ion-icon{font-size: 1.2rem;}
-.block{display: inline-block;}
-.parts{display: inline-block;  line-height: 0;}
-.add{padding: 6px 6px 10px 10px; font-size: 1rem; }
-.remove{padding: 6px 10px 10px 6px; font-size: 1rem; }
-.add-to-cart{
-    font-size: 0.7rem; 
-    font-family: sans-serif;  
-    color: var(--theme-base-color);
-    border: 1px solid var(--theme-base-color); 
-    display: inline-block; 
-    padding: 3px 5px 3px 5px;
-    border-radius: 20px;
+
+input:focus {
+  outline: none;
+}
+
+.block {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  margin-top: 5px;
+}
+
+// .parts{display:inline-block;line-height:0;}
+input.parts {
+  text-align: center;
+  border: 1px solid var(--theme-base-color);
+  border-radius: 7px;
+  padding: 5px;
+  float: left;
+}
+
+.add,
+.remove {
+  float: left;
+  font-size: 1.8rem;
+  // font-weight:bold;
+}
+
+.add-to-cart {
+  font-size: 0.85rem;
+  font-family: sans-serif;
+  color: var(--theme-base-color);
+  border: 1px solid var(--theme-base-color);
+  display: inline-block;
+  padding: 7px;
+  border-radius: 25px;
+  margin-top: 6px;
+  width: 90%;
 }

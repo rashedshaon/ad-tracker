@@ -6,31 +6,23 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
   styleUrls: ['./cart-button.component.scss'],
 })
 export class CartButtonComponent implements OnInit {
-
-  @Input() limit: number = 5;
+  @Input() limit: number = 9;
   @Input() count: number = 0;
   @Output() refresh = new EventEmitter();
 
-
-  constructor(
-    
-  ) { }
+  constructor() {}
 
   ngOnInit() {}
 
-  add()
-  {
-    if(this.count <= this.limit)
-    {
+  add() {
+    if (this.count <= this.limit) {
       this.count++;
       this.refresh.emit(this.count);
     }
   }
 
-  remove()
-  {
-    if(this.count > 0)
-    {
+  remove() {
+    if (this.count > 0) {
       this.count--;
       this.refresh.emit(this.count);
     }

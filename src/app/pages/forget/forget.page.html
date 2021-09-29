@@ -7,11 +7,24 @@
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col >
+    <ion-col>
       <ion-input placeholder="User Name" type="text" [(ngModel)]="user_data.login"></ion-input>
     </ion-col>
   </ion-row>
-  <ion-button expand="block" shape="round" color="orange" (click)="forget()" [disabled]="api.progress">Get Password</ion-button>
-  <ion-button fill="clear" expand="block" shape="round" color="primary" href="/login">Go to Login</ion-button>
-  <ion-button fill="clear" expand="block" shape="round" color="success" href="/tabs">GO TO HOME</ion-button>
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" shape="round" color="orange" (click)="forget()" [disabled]="api.progress">Get Password
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-button fill="outline" size="small" expand="block" shape="round" color="primary" href="/login">Go to Login
+      </ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button fill="outline" size="small" expand="block" shape="round" color="success" href="/tabs">Go to Home
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>
