@@ -1,18 +1,20 @@
 <ion-toolbar>
-  <ion-buttons slot="start" >
+  <ion-buttons slot="start">
     <ion-menu-button color="orange"></ion-menu-button>
   </ion-buttons>
   <div class="account">
     <span class="icon">৳</span>
-    <span class="amount">{{user.data.balance}}</span>
+    <span class="amount">{{balance}}</span>
   </div>
   <ion-buttons slot="primary" class="notification-btn">
-    <ion-button routerLink="/send">
-      <ion-icon color="orange" name="arrow-redo-outline"></ion-icon>
+    <!-- <ion-button color="success" routerLink="/send">
+      <small><code>Transfer</code></small>
+      <ion-icon name="arrow-redo-outline"></ion-icon>
+    </ion-button> -->
+    <ion-button routerLink="/cart" class="shopping-basket">
+      <!-- <ion-icon color="orange" name="bag-outline"></ion-icon> -->
+      <ion-icon color="orange" name="basket"></ion-icon>
     </ion-button>
-    <ion-button routerLink="/cart">
-      <ion-icon color="orange" name="bag-outline"></ion-icon>
-    </ion-button>
-    <ion-badge color="orange" routerLink="/cart">{{cart.data.total_quantity}}</ion-badge>
+    <ion-badge color="dark" routerLink="/cart">{{cart.data.total_quantity}}</ion-badge>
   </ion-buttons>
 </ion-toolbar>

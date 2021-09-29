@@ -9,20 +9,22 @@
 
 <ion-content>
   <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
-  
+
   <ion-list>
     <ion-item-divider>
       <ion-label>
-        MY ACCOUNTS
+        MY ALL ACCOUNTS
       </ion-label>
       <ion-text slot="end">
-        
+
       </ion-text>
     </ion-item-divider>
     <ion-item lines="full" *ngFor="let item of list;">
       <ion-label>
-        <h3>{{ item.login }}</h3>
-        
+        <h3 class="mb0">
+          {{item.name}}<br />
+          <code><small>User Name: {{ item.login }}</small></code>
+        </h3>
       </ion-label>
       <ion-text slot="end">
         <div class="date">{{ item.created_at }}</div>
@@ -32,9 +34,7 @@
   </ion-list>
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadNext($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

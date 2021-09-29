@@ -5,33 +5,52 @@
 <ion-content>
   <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
 
-  <ion-card *ngIf="!user.isLogin">
-    <ion-card-content>
-      <div class="income">
-        <span>৳</span>
-        <span>{{ collectedAmount }}</span>
-      </div>
-      <ion-button expand="block" color="orange" href="/login">Claim Today's Income</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <div *ngIf="adCounterFinish">
 
-  <ion-card *ngIf="!api.progress && !isCollected && user.isLogin">
-    <ion-card-content>
-      <div class="income">
-        <span>৳</span>
-        <span>{{ collectedAmount }}</span>
-      </div>
-      <ion-button expand="block" color="orange" (click)="claimIncome()">Claim Today's Income</ion-button>
-    </ion-card-content>
-  </ion-card>
+    <ion-card *ngIf="!user.isLogin">
+      <ion-card-content>
+        <div class="income">
+          <span>৳</span>
+          <span>{{ collectedAmount }}</span>
+        </div>
+        <ion-button expand="block" color="orange" href="/login">Claim Today's Income</ion-button>
+      </ion-card-content>
+    </ion-card>
 
-  <ion-card *ngIf="isCollected && user.isLogin">
-    <ion-card-content>
-      <div class="income success">
-        <span>৳</span>
-        <span>{{ collectedAmount }}</span>
-      </div>
-      <ion-button expand="block" color="success" [disabled]="true">Successfully Collected</ion-button>
-    </ion-card-content>
-  </ion-card>
+    <ion-card *ngIf="!api.progress && !isCollected && user.isLogin">
+      <ion-card-content>
+        <div class="income">
+          <span>৳</span>
+          <span>{{ collectedAmount }}</span>
+        </div>
+        <ion-button expand="block" color="orange" (click)="claimIncome()">Claim Today's Income</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="isCollected && user.isLogin">
+      <ion-card-content>
+        <div class="income success">
+          <span>৳</span>
+          <span>{{ collectedAmount }}</span>
+        </div>
+        <ion-button expand="block" color="success" [disabled]="true">Successfully Collected</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+  <div *ngIf="!adCounterFinish">
+    <ion-card>
+      <ion-card-content>
+        <h2 class="text-center"><i>Will Available in</i><b>&nbsp;{{adCounter}}:00&nbsp;</b><i>Sec.</i></h2>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-slides loop="true" pager="true" [options]="slideOptions">
+    <ion-slide *ngFor="let item of slides;">
+      <img src="{{ item.photo }}" alt="{{ item.name }}">
+    </ion-slide>
+  </ion-slides>
+
 </ion-content>

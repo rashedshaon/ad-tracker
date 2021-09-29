@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { ApiService } from '../../services/api/api.service';
 import { CartService } from '../../services/cart/cart.service';
 
@@ -8,24 +9,28 @@ import { CartService } from '../../services/cart/cart.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-
-  slides:any = [];
-  slideOptions:any = {
-    autoplay:true,
-   };
-
-  products:any = [];
+  slides: any = [];
+  slideOptions: any = { autoplay: true };
+  products: any = [];
 
   constructor(
+    public alertController: AlertController,
     public api: ApiService,
-    public cart: CartService,
-  ) { 
+    public cart: CartService
+  ) {}
 
-  }
+  ngOnInit() {}
 
-  ngOnInit() 
-  {
-    
+  async showAlert(message) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Description',
+      // subHeader: 'Subtitle',
+      message: message,
+      buttons: ['Close'],
+    });
+
+    await alert.present();
   }
 
   slidesDidLoad(slider) {
@@ -33,18 +38,15 @@ export class HomePage implements OnInit {
     slider.startAutoplay();
   }
 
-  loadData()
-  {
+  loadData() {
     this.api.progress = true;
-    this.api.post("home-data", {}).subscribe(result => {
+    this.api.post('home-data', {}).subscribe((result) => {
       this.api.progress = false;
-      
-      if (result.status == "ok") 
-      {
+
+      if (result.status == 'ok') {
         this.slides = result.data.slides;
         this.products = result.data.products;
       }
-      
     });
   }
 
@@ -55,9 +57,7 @@ export class HomePage implements OnInit {
     this.api.refreshUser();
   }
 
-  updateCart(count, product)
-  {
+  updateCart(count, product) {
     this.cart.updateCart(product, count);
   }
-
 }

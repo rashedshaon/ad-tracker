@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { SendPageRoutingModule } from './send-routing.module';
+import { ComponentsModule } from '../../components/components.module';
 
 import { SendPage } from './send.page';
 
@@ -13,7 +14,8 @@ import { SendPage } from './send.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    SendPageRoutingModule
+    SendPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [SendPage]
 })

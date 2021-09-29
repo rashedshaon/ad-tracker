@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
-  
+
   <ion-segment (ionChange)="segmentChanged($event)" value="summary" color="orange">
     <ion-segment-button value="summary">
       <ion-label>Summary</ion-label>
@@ -25,7 +25,7 @@
         Income
       </ion-label>
       <ion-text slot="end">
-        
+
       </ion-text>
     </ion-item-divider>
     <ion-item lines="full" *ngFor="let item of summary.income;">
@@ -38,17 +38,17 @@
       </ion-text>
     </ion-item>
 
-    
-  
+
+
     <ion-item-divider>
       <ion-label>
         Expense
       </ion-label>
       <ion-text slot="end">
-        
+
       </ion-text>
     </ion-item-divider>
-  
+
     <ion-item lines="full" *ngFor="let item of summary.expense;">
       <ion-label>
         <h3>{{item.name}}</h3>
@@ -62,10 +62,11 @@
   </ion-list>
 
   <ion-list *ngIf="selectedSegment == 'details'">
-    <ion-item lines="full"  *ngFor="let item of list;" (click)="showAlert(item.description)">
+    <ion-item lines="full" *ngFor="let item of list;" (click)="showAlert(item.description)">
       <ion-label>
-        <h3>{{item.name}}</h3>
-        
+        <h3>{{item.name}}<br />
+          <small><code>{{item.description}}</code></small>
+        </h3>
       </ion-label>
       <ion-text slot="end">
         <div class="date">{{item.created_at}}</div>
@@ -75,9 +76,7 @@
   </ion-list>
 
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadNext($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 

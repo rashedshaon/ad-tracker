@@ -1,25 +1,20 @@
 <ion-header>
-  <ion-toolbar color="orange">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Fund Transfer</ion-title>
-  </ion-toolbar>
+  <app-common-top></app-common-top>
 </ion-header>
 
 <ion-content>
   <ion-progress-bar color="warning" *ngIf="api.progress" type="indeterminate"></ion-progress-bar>
-
-  <ion-row>
-    <ion-col >
-      <ion-input placeholder="User Name" type="text" [(ngModel)]="fundTransfer.login"></ion-input>
+  <ion-row class="mt10">
+    <ion-col>
+      <ion-input class="input-field" placeholder="User Name" type="text" [(ngModel)]="fundTransfer.login"></ion-input>
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col >
+    <ion-col>
       <ion-input placeholder="Amount" type="number" [(ngModel)]="fundTransfer.amount"></ion-input>
     </ion-col>
   </ion-row>
 
-  <ion-button expand="block" shape="round" color="orange" (click)="sendFund()" [disabled]="api.progress">Send Fund</ion-button>
+  <ion-button expand="block" shape="round" color="orange" (click)="sendFund()" [disabled]="api.progress">Send Fund
+  </ion-button>
 </ion-content>

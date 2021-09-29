@@ -171,10 +171,8 @@ export class ApiService {
       if (typeof data == "object" && typeof data[0] != "undefined") {
         return true;
       }
-
       return false;
     }
-
     return false;
   }
 
@@ -183,24 +181,19 @@ export class ApiService {
       if (typeof data == "object" && typeof data.type == "undefined") {
         return true;
       }
-
       return false;
     }
-
     return false;
   }
 
   isMultiObject(data) {
     if (data != null) {
       console.log(typeof data.type, "eee xxx eeeeee");
-
       if (typeof data == "object" && typeof data.type == "undefined") {
         return true;
       }
-
       return false;
     }
-
     return false;
   }
 
@@ -213,34 +206,25 @@ export class ApiService {
     return this.http.post(apiUrl + url, formparams);
   }
 
-
   refreshToken() {
     this.post("refresh-token", { token: localStorage.getItem("token") }).subscribe((result) => {
-
-      if (result.status == "ok") 
-      {
+      if (result.status == "ok")       {
         this.user.setToken(result.token);
         this.refreshUser();
       } 
-      else 
-      {
-        if (result.msg == "could_not_refresh_token") 
-        {
+      else       {
+        if (result.msg == "could_not_refresh_token")         {
           this.user.logout();
         } 
       }
-
       console.log(result.msg, 'refreshToken');
     });
   }
 
-  refreshUser() 
-  {
-    if(this.user.isLogin)
-    {
+  refreshUser() {
+    if(this.user.isLogin)    {
       this.post("user-refresh?token="+this.user.token, {}).subscribe(result => {
-        if(result.status == "ok") 
-        {
+        if(result.status == "ok")         {
           this.user.data = result.data;
           localStorage.setItem("user_data", JSON.stringify(this.user.data));
         }
