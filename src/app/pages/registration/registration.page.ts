@@ -17,6 +17,7 @@ export class RegistrationPage implements OnInit {
     phone: '',
     email: '',
     referrer: '',
+    referrer_password: '',
     password: '',
     password_confirmation: '',
   };

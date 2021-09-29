@@ -92,6 +92,18 @@
         <ion-input placeholder="Address" type="text" [(ngModel)]="user.data.address"></ion-input>
       </ion-col>
     </ion-row>
+
+    <ion-row>
+      <ion-col >
+        <ion-input placeholder="Password" type="password" [(ngModel)]="user_data.password"></ion-input>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col >
+        <ion-input placeholder="Confirm Password" type="password" [(ngModel)]="user_data.password_confirmation"></ion-input>
+      </ion-col>
+    </ion-row>
   
     <ion-button expand="block" shape="round" color="orange" (click)="update()">Update Profile</ion-button>
   </div>
